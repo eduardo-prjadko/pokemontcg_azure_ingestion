@@ -1,0 +1,8 @@
+local.settings.json
+pytest.ini
+Dockerfile
+tests/
+.vscode/
+.venv/
+.pytest_cache/
+pytest_cache/
