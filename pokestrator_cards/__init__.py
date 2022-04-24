@@ -19,7 +19,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
                 'page': page,
                 'storage_conn_string': os.environ.get('STORAGE_CONN_STRING'),
                 'container': os.environ.get('CONTAINER'),
-                'prefix_path': os.environ.get('PREFIX_PATH')
+                'prefix_path': os.environ.get('CARDS_PREFIX_PATH')
             }
         ))
         
