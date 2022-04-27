@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       
       - name: setup docker buildx
-        uses: socker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v1
       
       - name: build and push
         uses: docker/build-push-action@v2
