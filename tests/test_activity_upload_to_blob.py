@@ -11,6 +11,12 @@ def test_activity_upload_to_blob(
     storage_conn_string: str,
     cards_data: dict
 ):
+
+    blob_service_client = BlobServiceClient \
+        .from_connection_string(storage_conn_string)
+    container_client = blob_service_client.get_container_client(container)
+    container_client.create_container()
+
     uploadsettings = {
         'storage_conn_string': storage_conn_string,
         'container': container,
@@ -25,10 +31,4 @@ def test_activity_upload_to_blob(
 
     assert r
 
-    blob_service_client = BlobServiceClient \
-        .from_connection_string(storage_conn_string)
-    blob_client = blob_service_client.get_blob_client(
-        container=container,
-        blob=f'{r["blob_path"]}/{r["blob_name"]}'
-    )
-    blob_client.delete_blob()
+    container_client.delete_container()
