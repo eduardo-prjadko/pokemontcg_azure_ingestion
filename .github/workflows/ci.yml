@@ -10,6 +10,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      STORAGE_CONN_STRING: ${{ secrets.STORAGE_CONN_STRING }}
+      CONTAINER: ${{ secrets.CONTAINER }}
+      PREFIX_PATH: ${{ secrets.PREFIX_PATH }}
     
     steps:
       - name: checkout
@@ -25,6 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: run storage container
+        run: docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 -d mcr.microsoft.com/azure-storage/azurite
       
       - name: Test with pytest
         run: |
